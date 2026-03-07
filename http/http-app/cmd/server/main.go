@@ -21,6 +21,10 @@ func main() {
 		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		_, _ = fmt.Fprintf(w, "hello from http server\nmethod=%s path=%s time=%s\n", r.Method, r.URL.Path, time.Now().Format(time.RFC3339))
 	})
+	mux.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+		_, _ = fmt.Fprintf(w, "pong from http server\nmethod=%s path=%s time=%s\n", r.Method, r.URL.Path, time.Now().Format(time.RFC3339))
+	})
 
 	server := &http.Server{
 		Addr:              *addr,

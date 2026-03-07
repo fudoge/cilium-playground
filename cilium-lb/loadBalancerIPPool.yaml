@@ -1,0 +1,8 @@
+apiVersion: cilium.io/v2
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: public-pool
+spec:
+  blocks:
+  - cidr: 172.20.0.0/24
+  disabled: false
