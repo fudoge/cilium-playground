@@ -9,7 +9,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	testv1 "example.com/test/v1"
+	testv1 "github.com/fudoge/cilium-playground/proto/gen/go/test/v1"
 )
 
 func main() {

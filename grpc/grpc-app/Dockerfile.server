@@ -1,0 +1,17 @@
+FROM golang:1.22-alpine AS build
+
+WORKDIR /src
+
+COPY proto/gen/go/test ./proto/gen/go/test
+COPY grpc/grpc-app ./grpc/grpc-app
+
+WORKDIR /src/grpc/grpc-app
+RUN go build -o /out/grpc-server ./cmd/server
+
+FROM alpine:3.19
+
+WORKDIR /app
+COPY --from=build /out/grpc-server ./grpc-server
+
+EXPOSE 50051
+ENTRYPOINT ["/app/grpc-server"]

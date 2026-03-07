@@ -1,0 +1,16 @@
+FROM golang:1.22-alpine AS build
+
+WORKDIR /src
+
+COPY http/http-app ./http/http-app
+
+WORKDIR /src/http/http-app
+RUN go build -o /out/http-server ./cmd/server
+
+FROM alpine:3.19
+
+WORKDIR /app
+COPY --from=build /out/http-server ./http-server
+
+EXPOSE 8080
+ENTRYPOINT ["/app/http-server"]

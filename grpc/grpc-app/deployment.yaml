@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpc-test
+  labels:
+    app: grpc-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grpc-test
+  template:
+    metadata:
+      labels:
+        app: grpc-test
+    spec:
+      containers:
+        - name: grpc-server
+          image: riveroverflow/cilium-test-grpc:latest
+          ports:
+            - containerPort: 50051

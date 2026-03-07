@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: http-test
+  labels:
+    app: http-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: http-test
+  template:
+    metadata:
+      labels:
+        app: http-test
+    spec:
+      containers:
+        - name: http-server
+          image: riveroverflow/cilium-test-http:latest
+          ports:
+            - containerPort: 8080
