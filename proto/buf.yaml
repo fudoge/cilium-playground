@@ -1,0 +1,12 @@
+version: v1
+
+# Module configuration for this repo's protos.
+name: buf.build/local/cilium-playground
+
+lint:
+  use:
+    - DEFAULT
+
+breaking:
+  use:
+    - FILE

@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package test.v1;
+
+option go_package = "test/v1;testv1";
+
+// Simple gRPC service for smoke testing.
+service TestService {
+  rpc Ping(PingRequest) returns (PingResponse);
+}
+
+message PingRequest {
+  // Client-provided message.
+  string message = 1;
+}
+
+message PingResponse {
+  // Server echo of the request.
+  string message = 1;
+  // Server unix timestamp in milliseconds.
+  int64 server_time_ms = 2;
+}
