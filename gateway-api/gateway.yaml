@@ -5,9 +5,15 @@ metadata:
 spec:
   gatewayClassName: example-gateway-class
   listeners:
-  - protocol: HTTP
-    port: 8080
-    name: web-gw
-    allowedRoutes:
-      namespaces:
-        from: Same
+    - protocol: HTTP
+      port: 8080
+      name: web-gw
+      allowedRoutes:
+        namespaces:
+          from: Same
+    - protocol: HTTP
+      port: 50051
+      name: grpc-gw
+      allowedRoutes:
+        namespaces:
+          from: Same
