@@ -1,0 +1,19 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: GRPCRoute
+metadata:
+  name: grpc-test-app
+spec:
+  parentRefs:
+    - name: example-gateway
+      namespace: default
+      sectionName: grpc-gw
+  hostnames:
+    - test.chaewoon.local
+  rules:
+    - matches:
+        - method:
+            service: test.v1.TestService
+            method: Ping
+      backendRefs:
+        - name: grpc-test
+          port: 50051
