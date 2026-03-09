@@ -1,0 +1,16 @@
+apiVersion: cilium.io/v2
+kind: CiliumBGPAdvertisement
+metadata:
+  name: advertise-gateway-lb
+  labels:
+    advertise: bgp
+    bgp-advertisement: "true"
+spec:
+  advertisements:
+  - advertisementType: Service
+    selector:
+      matchLabels:
+        gateway.networking.k8s.io/gateway-name: example-gateway
+    service:
+      addresses:
+      - LoadBalancerIP
