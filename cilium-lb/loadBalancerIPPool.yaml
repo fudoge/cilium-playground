@@ -4,5 +4,6 @@ metadata:
   name: public-pool
 spec:
   blocks:
-  - cidr: 172.20.0.0/24
+  - start: "172.20.0.2"
+    stop: "172.20.0.254"
   disabled: false

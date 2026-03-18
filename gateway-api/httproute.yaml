@@ -6,6 +6,7 @@ spec:
   parentRefs:
   - name: example-gateway
     namespace: default
+    sectionName: web-gw
   hostnames:
     - http-test.mynetwork.local
   rules:
