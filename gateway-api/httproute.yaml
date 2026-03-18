@@ -6,6 +6,8 @@ spec:
   parentRefs:
   - name: example-gateway
     namespace: default
+  hostnames:
+    - http-test.mynetwork.local
   rules:
   - matches:
     - path:
