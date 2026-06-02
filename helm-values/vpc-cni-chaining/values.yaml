@@ -1,0 +1,21 @@
+cni:
+  chainingMode: aws-cni
+  exclusive: false
+
+enableIPv4Masquerade: false
+enableIPv6Masquerade: false
+routingMode: native
+
+l7Proxy: true
+
+operator:
+  replicas: 1
+
+hubble: 
+  enabled: true
+  relay:
+    enabled: true
+  ui: 
+    enabled: true
+  metrics:
+    enabledOpenMetrics: true

@@ -1,0 +1,40 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: aws-pod
+  namespace: default
+spec:
+  endpointSelector:
+    matchLabels:
+      env: test
+      cloud: aws
+  egress:
+    # Pod Identity Associations
+    - toEntities:
+      - host
+      toPorts:
+      - ports:
+        - port: "80"
+          protocol: TCP
+        - port: "443"
+          protocol: TCP
+    # S3 Bucket
+    - toFQDNs:
+      - matchName: s3.ap-northeast-2.amazonaws.com
+      - matchPattern: "*.s3.ap-northeast-2.amazonaws.com"
+      toPorts:
+      - ports:
+        - port: "443"
+          protocol: TCP
+    # Kube DNS
+    - toEndpoints:
+        - matchLabels:
+            "k8s:io.kubernetes.pod.namespace": kube-system
+            "k8s:k8s-app": kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: ANY
+          rules:
+            dns:
+              - matchPattern: "*"
